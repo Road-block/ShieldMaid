@@ -1,0 +1,18 @@
+## Interface: 50500
+## Title: Shield Maid
+## IconTexture: 132110
+## Author: Twattle of Frostmane - EU
+## X-ClassicAuthor: Roadblock
+## Version: 50500.1
+## Notes: A tracker for Shield Block and Shield Barrier.
+## SavedVariables: ShieldMaidSpellDatabase
+## SavedVariablesPerCharacter: ShieldMaidConfig
+
+Config.lua
+Core\Icon.lua
+Core\ShieldBarrierIcon.lua
+Core\ShieldBlockIcon.lua
+Core\LinkedList.lua
+Core\Manager.lua
+Core\Console.lua
+Main.lua
