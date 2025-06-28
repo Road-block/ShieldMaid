@@ -87,7 +87,7 @@ function Manager:new(shieldBarrierIcon, shieldBlockIcon)
 		local timestamp, eventType, _, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, arg12, arg13, arg14, arg15, arg16, arg17, arg18, arg19, arg20, arg21, arg22, arg23, arg24 = CombatLogGetCurrentEventInfo()
 		
 		if not subEvents[eventType] then return end
-		if not destGUID and destGUID == self.PlayerGUID then return end
+		if not (destGUID and (destGUID == self.PlayerGUID)) then return end
 
 		local spellId = arg12
 		if eventType == "SPELL_AURA_APPLIED" then
