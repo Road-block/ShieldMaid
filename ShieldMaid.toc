@@ -3,7 +3,7 @@
 ## IconTexture: 132110
 ## Author: Twattle of Frostmane - EU
 ## X-ClassicAuthor: Roadblock
-## Version: 50500.2
+## Version: 50500.3
 ## Notes: A tracker for Shield Block and Shield Barrier.
 ## SavedVariables: ShieldMaidSpellDatabase
 ## SavedVariablesPerCharacter: ShieldMaidConfig

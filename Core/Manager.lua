@@ -288,34 +288,38 @@ function Manager:Load()
 	local class, _ = UnitClassBase("player")
 	local spec = GetSpecialization()
 	if class == "WARRIOR" and spec == 3 or (not ShieldMaidConfig.tankOnly and IsSpellKnown(112048)) then
+		if not self.Active then
+			ns.Console.Write("|c0000FF00Loaded|r")
+		end
 		self.Active = true
-		--C_Timer.After(3, function() self.Active = true end)
-		if not self.ShieldBarrierIcon.Active and not self.ShieldBlockIcon.Active then
+		local inCombat = UnitAffectingCombat("player")
+		if not self.ShieldBarrierIcon.Active then
 			self.ShieldBarrierIcon:Reload()
-			self.ShieldBlockIcon:Reload()
-			self.ShieldBarrierIcon:Show()
-			self.ShieldBlockIcon:Show()
 			self.ShieldBarrierIcon.Active = true
-			self.ShieldBlockIcon.Active = true
+			self.ShieldBarrierIcon:Show()
 	
-			-- In case we reload or change spec in the middle of combat, we check for it here.
-			if UnitAffectingCombat("player") or not ShieldMaidConfig.hiddenOutOfCombat then
-				self.ShieldBarrierIcon:Show()
-				self.ShieldBlockIcon:Show()
-			else
+			if (not inCombat) and ShieldMaidConfig.hiddenOutOfCombat then
 				self.ShieldBarrierIcon:Hide()
+			end
+		end
+		if not self.ShieldBlockIcon.Active then
+			self.ShieldBlockIcon:Reload()
+			self.ShieldBlockIcon.Active = true
+			self.ShieldBlockIcon:Show()
+
+			if (not inCombat) and ShieldMaidConfig.hiddenOutOfCombat then
 				self.ShieldBlockIcon:Hide()
 			end
-			
-			ns.Console.Write("|c0000FF00Loaded|r")
-		end		
-	elseif self.Active then
+		end
+	else--if self.Active then
+		if self.Active then
+			ns.Console.Write("|c00FF0000Unloaded|r")
+		end
 		self.Active = false
-		self.ShieldBarrierIcon:Hide()
-		self.ShieldBlockIcon:Hide()
 		self.ShieldBlockIcon.Active = false
 		self.ShieldBarrierIcon.Active = false
-		ns.Console.Write("|c00FF0000Unloaded|r")
+		self.ShieldBarrierIcon:Hide()
+		self.ShieldBlockIcon:Hide()
 	end
 end
 
